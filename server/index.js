@@ -8,6 +8,7 @@ const path = require('path');
 
 const app = express();
 const client = new CoinMarketCap();
+const PORT = process.env.PORT || 3000;
 
 app.use(morgan('tiny'));
 
@@ -21,7 +22,7 @@ app.get('/', (req, res) => {
     .catch(error => res.status(401).send({ error }));
 });
 
-app.listen(3000, () => {
+app.listen(PORT, () => {
   console.log(`Server is on port 3000`);
 });
 
