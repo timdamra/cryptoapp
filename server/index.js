@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 3000;
 
 app.use(morgan('tiny'));
 
-app.get('/', (req, res) => {
+app.get('/list', (req, res) => {
   client
     .getTicker({ limit: 20 })
     .then(coins => {
