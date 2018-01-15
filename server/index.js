@@ -1,5 +1,6 @@
 const express = require('express');
 const morgan = require('morgan');
+const axios = require('axios');
 
 global.fetch = require('node-fetch');
 const cc = require('cryptocompare');
@@ -18,14 +19,18 @@ app.get('/list', async (req, res) => {
 
   try {
     let data = await exchange.loadMarkets();
+    let news = await axios.get(
+      'https://newsapi.org/v2/top-headlines?sources=crypto-coins-news&apiKey=a8155b1f3f7f45ab96a28fdd3f99721d'
+    );
     let dataArray = Object.values(data).slice(0, 750);
     let coins = dataArray
       .filter(val => val.quote === 'USD')
       .map(val => val.info);
 
-    return res.status(200).send({ coins });
+    res.status(200).send({ coins, news: news.data });
   } catch (err) {
-    res.status(401).send({ err });
+    console.log(err);
+    res.status(400).send('Something went wrong!');
   }
 });
 
