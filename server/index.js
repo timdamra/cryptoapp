@@ -4,6 +4,7 @@ const morgan = require('morgan');
 global.fetch = require('node-fetch');
 const cc = require('cryptocompare');
 const CoinMarketCap = require('coinmarketcap-api');
+const ccxt = require('ccxt');
 const path = require('path');
 
 const app = express();
@@ -12,14 +13,20 @@ const PORT = process.env.PORT || 3000;
 
 app.use(morgan('tiny'));
 
-app.get('/list', (req, res) => {
-  client
-    .getTicker({ limit: 20 })
-    .then(coins => {
-      console.log(coins);
-      res.status(200).send({ coins });
-    })
-    .catch(error => res.status(401).send({ error }));
+app.get('/list', async (req, res) => {
+  let exchange = new ccxt.coinmarketcap();
+
+  try {
+    let data = await exchange.loadMarkets();
+    let dataArray = Object.values(data).slice(0, 750);
+    let coins = dataArray
+      .filter(val => val.quote === 'USD')
+      .map(val => val.info);
+
+    return res.status(200).send({ coins });
+  } catch (err) {
+    res.status(401).send({ err });
+  }
 });
 
 app.listen(PORT, () => {

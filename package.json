@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "axios": "^0.17.1",
+    "ccxt": "^1.10.713",
     "coinmarketcap-api": "^2.0.0",
     "cryptocompare": "^0.4.0",
     "express": "^4.16.2",
@@ -22,17 +23,9 @@
     "styled-components": "^2.4.0"
   },
   "jest": {
-    "setupFiles": [
-      "raf/polyfill",
-      "<rootDir>/src/tests/setupTests.js"
-    ],
-    "snapshotSerializers": [
-      "enzyme-to-json/serializer"
-    ],
-    "collectCoverageFrom": [
-      "**/*.{js}",
-      "!**/node_modules/**"
-    ]
+    "setupFiles": ["raf/polyfill", "<rootDir>/src/tests/setupTests.js"],
+    "snapshotSerializers": ["enzyme-to-json/serializer"],
+    "collectCoverageFrom": ["**/*.{js}", "!**/node_modules/**"]
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -60,7 +53,7 @@
   "scripts": {
     "test": "jest --watchAll",
     "start:dev": "webpack-dev-server --open",
-    "start": "node server/index.js",
+    "start": "nodemon server/index.js",
     "build": "webpack"
   },
   "author": "",
