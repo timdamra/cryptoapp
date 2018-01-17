@@ -25,6 +25,21 @@ app.use(function(req, res, next) {
   next();
 });
 
+app.get('/ico', (req, res) => {
+  const icoApi = 'https://api.icowatchlist.com/public/v1/';
+
+  axios
+    .get(icoApi)
+    .then(allICOs => {
+      res.status(200).send({
+        allICOs
+      });
+    })
+    .catch(err => {
+      res.status(400).send({ err });
+    });
+});
+
 app.get('/list', async (req, res) => {
   let exchange = new ccxt.coinmarketcap();
 
@@ -64,7 +79,3 @@ app.get('/list', async (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server is on port 3000`);
 });
-
-/*
-  https://cryptocurrency-app.herokuapp.com | https://git.heroku.com/cryptocurrency-app.git
-*/
