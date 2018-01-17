@@ -26,17 +26,16 @@ app.use(function(req, res, next) {
 });
 
 app.get('/ico', (req, res) => {
-  const icoApi = 'https://api.icowatchlist.com/public/v1/';
-
   axios
-    .get(icoApi)
-    .then(allICOs => {
+    .get('https://api.icowatchlist.com/public/v1/')
+    .then(list => {
       res.status(200).send({
-        allICOs
+        data: list.data
       });
     })
     .catch(err => {
-      res.status(400).send({ err });
+      console.log(err);
+      res.end();
     });
 });
 
