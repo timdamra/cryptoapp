@@ -39,6 +39,22 @@ app.get('/ico', (req, res) => {
     });
 });
 
+app.get('/reddit', (req, res) => {
+  const redditApi = 'https://www.reddit.com/r/cryptocurrency.json?limit=5';
+
+  axios
+    .get(redditApi)
+    .then(redditRes => {
+      res.status(200).send({
+        redditList: redditRes.data
+      });
+    })
+    .catch(err => {
+      throw new Error('reddit', err);
+      res.end();
+    });
+});
+
 app.get('/list', async (req, res) => {
   let exchange = new ccxt.coinmarketcap();
 

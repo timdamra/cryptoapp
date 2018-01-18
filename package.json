@@ -10,6 +10,7 @@
     "axios": "^0.17.1",
     "ccxt": "^1.10.713",
     "coinmarketcap-api": "^2.0.0",
+    "compare-dates": "^1.2.0",
     "cryptocompare": "^0.4.0",
     "express": "^4.16.2",
     "moment": "^2.20.1",
