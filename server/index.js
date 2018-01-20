@@ -25,6 +25,24 @@ app.use(function(req, res, next) {
   next();
 });
 
+app.get('/exchanges/:symbol', (req, res) => {
+  let { symbol } = req.params;
+
+  const api = `https://www.cryptocompare.com/api/data/coinsnapshot/?fsym=${symbol}&tsym=USD`;
+
+  axios
+    .get(api)
+    .then(response => {
+      res.status(200).send({
+        exchanges: response.data.Data.Exchanges
+      });
+    })
+    .catch(err => {
+      console.log(err);
+      res.end();
+    });
+});
+
 app.get('/ico', (req, res) => {
   axios
     .get('https://api.icowatchlist.com/public/v1/')

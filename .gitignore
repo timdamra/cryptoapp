@@ -4,3 +4,5 @@ src/
 testdata/
 webpack.config.js
 .babelrc
+list.js
+list2.js
