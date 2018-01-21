@@ -40,6 +40,7 @@
     ]
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-plugin-transform-async-to-generator": "^6.24.1",
@@ -58,6 +59,7 @@
     "jest": "^22.0.5",
     "jest-styled-components": "^4.9.0",
     "link-media-html-webpack-plugin": "^1.0.1",
+    "prop-types": "^15.6.0",
     "style-loader": "^0.19.1",
     "webpack": "^3.10.0",
     "webpack-dev-server": "^2.10.1"
