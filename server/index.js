@@ -30,22 +30,3 @@ require('./dataRoutes')(app, ccxt);
 app.listen(PORT, () => {
   console.log(`Server is on port 3000`);
 });
-
-// let twitterData = await fetchTweets.get(
-//   'https://api.twitter.com/1.1/search/tweets.json',
-//   {
-//     q: 'cryptocurrency',
-//     lang: 'en'
-//   }
-// );
-
-// let tweets = twitterData.statuses.map(val => {
-//   return {
-//     text: val.text,
-//     name: val.user.name,
-//     screenName: val.user.screen_name,
-//     followers: val.user.followers_count,
-//     friends: val.user.friends_count,
-//     retweetCount: val.retweet_count
-//   };
-// });

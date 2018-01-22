@@ -1,4 +1,5 @@
 const axios = require('axios');
+const twitterClient = require('./fetchTweets');
 
 module.exports = (app, ccxt) => {
   app.get('/exchanges/:symbol', (req, res) => {
@@ -45,6 +46,21 @@ module.exports = (app, ccxt) => {
       })
       .catch(err => {
         throw new Error('reddit', err);
+        res.end();
+      });
+  });
+
+  app.get('/twitter', (req, res) => {
+    twitterClient
+      .get('/users/lookup', {
+        screen_name:
+          'VitalikButerin,officialmcafee,satoshilite,aantonop,novogratz,WhalePanda'
+      })
+      .then(response => {
+        res.send(response);
+      })
+      .catch(err => {
+        console.error(err);
         res.end();
       });
   });
