@@ -1,5 +1,7 @@
 const axios = require('axios');
 const binance = require('node-binance-api');
+const moment = require('moment');
+
 const twitterClient = require('./fetchTweets');
 
 module.exports = (app, ccxt) => {
@@ -33,9 +35,10 @@ module.exports = (app, ccxt) => {
           console.error(error);
           res.send('Error');
         }
+        let time = moment(val[0]).format('MM/DD/YY h:mm:ss A');
         const hourData = ticks.map(val => {
           return {
-            time: val[0],
+            x: time,
             open: val[1],
             high: val[2],
             low: val[3],
