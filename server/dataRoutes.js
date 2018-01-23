@@ -35,8 +35,9 @@ module.exports = (app, ccxt) => {
           console.error(error);
           res.send('Error');
         }
-        let time = moment(val[0]).format('MM/DD/YY h:mm:ss A');
+
         const hourData = ticks.map(val => {
+          let time = moment(val[0]).format('MM/DD/YY h:mm:ss A');
           return {
             x: time,
             open: val[1],
