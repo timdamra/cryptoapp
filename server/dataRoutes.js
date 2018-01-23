@@ -42,11 +42,13 @@ module.exports = (app, ccxt) => {
       const ccReddit = await axios.get(ccRedditApi);
       const btcReddit = await axios.get(btcRedditApi);
 
+      const mergeReddits = [
+        ...ccReddit.data.data.children,
+        ...btcReddit.data.data.children
+      ];
+
       res.send({
-        redditLists: {
-          ccReddit: ccReddit.data.data.children,
-          btcReddit: btcReddit.data.data.children
-        }
+        redditLists: mergeReddits
       });
     } catch (err) {
       console.error(err);
