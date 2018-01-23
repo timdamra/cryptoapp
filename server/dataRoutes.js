@@ -34,20 +34,24 @@ module.exports = (app, ccxt) => {
       });
   });
 
-  app.get('/reddit', (req, res) => {
-    const redditApi = 'https://www.reddit.com/r/cryptocurrency.json?limit=5';
+  app.get('/reddit', async (req, res) => {
+    const ccRedditApi = 'https://www.reddit.com/r/cryptocurrency.json?limit=5';
+    const btcRedditApi = 'https://www.reddit.com/r/Bitcoin.json?limit=5';
 
-    axios
-      .get(redditApi)
-      .then(redditRes => {
-        res.status(200).send({
-          redditList: redditRes.data
-        });
-      })
-      .catch(err => {
-        throw new Error('reddit', err);
-        res.end();
+    try {
+      const ccReddit = await axios.get(ccRedditApi);
+      const btcReddit = await axios.get(btcRedditApi);
+
+      res.send({
+        redditLists: {
+          ccReddit: ccReddit.data.data.children,
+          btcReddit: btcReddit.data.data.children
+        }
       });
+    } catch (err) {
+      console.error(err);
+      res.status(404).send('Something went wrong!');
+    }
   });
 
   app.get('/twitter', (req, res) => {
