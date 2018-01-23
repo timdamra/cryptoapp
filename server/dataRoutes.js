@@ -1,4 +1,5 @@
 const axios = require('axios');
+const binance = require('node-binance-api');
 const twitterClient = require('./fetchTweets');
 
 module.exports = (app, ccxt) => {
@@ -18,6 +19,33 @@ module.exports = (app, ccxt) => {
         console.log(err);
         res.end();
       });
+  });
+
+  app.get('/profile/:symbol', (req, res) => {
+    const { symbol } = req.params;
+    const ticker = `${symbol.toUpperCase()}BTC`;
+
+    binance.candlesticks(
+      ticker,
+      '1m',
+      (error, ticks, symb) => {
+        if (error) {
+          console.error(error);
+          res.send('Error');
+        }
+        const hourData = ticks.map(val => {
+          return {
+            time: val[0],
+            open: val[1],
+            high: val[2],
+            low: val[3],
+            close: val[4]
+          };
+        });
+        res.send({ response: hourData });
+      },
+      { limit: 60 }
+    );
   });
 
   app.get('/ico', (req, res) => {
