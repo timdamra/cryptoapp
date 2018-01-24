@@ -43,9 +43,6 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
-    }),
     new HtmlWebpackPlugin({
       template: './src/index.html'
     }),
@@ -55,8 +52,8 @@ module.exports = {
   ],
   devtool: 'source-map',
   devServer: {
-    contentBase: './dist',
+    contentBase: path.join(__dirname, 'dist'),
     historyApiFallback: true,
-    hot: true
+    publicPath: '/dist/'
   }
 };
