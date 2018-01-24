@@ -63,7 +63,7 @@
     "start": "node index.js",
     "build:dev": "webpack",
     "build:prod": "webpack -p --env production",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false && npm run build:prod"
+    "heroku-postbuild": "npm run webpack -p --env production"
   },
   "author": "Tim Damra",
   "license": "ISC"
