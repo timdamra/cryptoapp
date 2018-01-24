@@ -32,7 +32,7 @@ module.exports = (app, ccxt) => {
       (error, ticks, symb) => {
         if (error) {
           console.error(error);
-          res.send('Error');
+          return res.status(404).send('Error');
         }
 
         const hourData = ticks.map(val => {
