@@ -1,5 +1,4 @@
 node_modules/
-src/
 testdata/
 src/tests
 list.js
