@@ -28,7 +28,7 @@ module.exports = (app, ccxt) => {
 
     binance.candlesticks(
       ticker,
-      '1m',
+      '5m',
       (error, ticks, symb) => {
         if (error) {
           console.error(error);
@@ -46,7 +46,7 @@ module.exports = (app, ccxt) => {
         });
         res.send({ response: hourData });
       },
-      { limit: 60 }
+      { limit: 12 }
     );
   });
 
