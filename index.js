@@ -7,7 +7,6 @@ global.fetch = require('node-fetch');
 const cc = require('cryptocompare');
 const CoinMarketCap = require('coinmarketcap-api');
 const ccxt = require('ccxt');
-const path = require('path');
 
 const fetchTweets = require('./fetchTweets');
 
