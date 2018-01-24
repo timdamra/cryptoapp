@@ -8,27 +8,25 @@ export const ACTIVE_PROFILE = 'active_profile';
 export const CHART_DATA = 'chart_data';
 
 export const fetchCurrencyList = () => async dispatch => {
-  const res = await axios.get('http://cryptocurrency-app.herokuapp.com/list');
+  const res = await axios.get('/list');
 
   dispatch({ type: CURRENCY_LIST, payload: res.data });
 };
 
 export const fetchICOList = () => async dispatch => {
-  const res = await axios.get('http://cryptocurrency-app.herokuapp.com/ico');
+  const res = await axios.get('/ico');
 
   dispatch({ type: ICO_LIST, payload: res.data.data.ico });
 };
 
 export const fetchRedditList = () => async dispatch => {
-  const res = await axios.get('http://cryptocurrency-app.herokuapp.com/reddit');
+  const res = await axios.get('/reddit');
 
   dispatch({ type: REDDIT_LIST, payload: res.data.redditLists });
 };
 
 export const fetchTwitterList = () => async dispatch => {
-  const res = await axios.get(
-    'http://cryptocurrency-app.herokuapp.com/twitter'
-  );
+  const res = await axios.get('/twitter');
 
   dispatch({ type: TWITTER_LIST, payload: res.data });
 };
@@ -38,9 +36,7 @@ export const setActiveProfileImage = ({ url }) => dispatch => {
 };
 
 export const fetchChartData = symbol => async dispatch => {
-  const res = await axios.get(
-    `http://cryptocurrency-app.herokuapp.com/profile/${symbol}`
-  );
+  const res = await axios.get(`/profile/${symbol}`);
 
   dispatch({ type: CHART_DATA, payload: res.data.response });
 };

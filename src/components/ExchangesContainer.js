@@ -11,10 +11,7 @@ class ExchangesContainer extends Component {
   };
   componentDidMount = () => {
     axios
-      .get(
-        `https://cryptocurrency-app.herokuapp.com/exchanges/${this.props
-          .displayedCurrency.symbol}`
-      )
+      .get(`/exchanges/${this.props.displayedCurrency.symbol}`)
       .then(response => {
         this.setState({
           exchanges: response.data.exchanges
