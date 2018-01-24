@@ -20,7 +20,7 @@ app.use(express.static(publicPath));
 
 require('./dataRoutes')(app, ccxt);
 
-app.get('/*', (req, res) => {
+app.get('*', (req, res) => {
   res.sendFile(path.join(publicPath, 'index.html'));
 });
 
