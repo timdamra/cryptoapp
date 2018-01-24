@@ -28,7 +28,7 @@ if (process.env.NODE_ENV === 'production') {
 
 app.use(function(err, req, res, next) {
   res.status(err.status || 500);
-  res.send(path.resolve(__dirname, 'dist', 'index.html'));
+  res.send(path.join(__dirname, 'dist', 'index.html'));
 });
 
 app.listen(PORT, () => {
