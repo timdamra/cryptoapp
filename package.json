@@ -1,6 +1,6 @@
 {
   "name": "crytpo-app",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "",
   "main": "index.js",
   "engines": {
@@ -31,17 +31,9 @@
     "victory": "^0.24.5"
   },
   "jest": {
-    "setupFiles": [
-      "raf/polyfill",
-      "<rootDir>/src/tests/setupTests.js"
-    ],
-    "snapshotSerializers": [
-      "enzyme-to-json/serializer"
-    ],
-    "collectCoverageFrom": [
-      "**/*.{js}",
-      "!**/node_modules/**"
-    ]
+    "setupFiles": ["raf/polyfill", "<rootDir>/src/tests/setupTests.js"],
+    "snapshotSerializers": ["enzyme-to-json/serializer"],
+    "collectCoverageFrom": ["**/*.{js}", "!**/node_modules/**"]
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -66,14 +58,17 @@
     "prop-types": "^15.6.0",
     "style-loader": "^0.19.1",
     "webpack": "^3.10.0",
+    "webpack-dev-middleware": "^2.0.4",
     "webpack-dev-server": "^2.10.1"
   },
   "scripts": {
     "test": "jest --watchAll",
     "start:dev": "webpack-dev-server --open",
-    "start": "node server/index.js",
-    "build": "webpack"
+    "start": "node index.js",
+    "build": "webpack",
+    "build:prod": "webpack -p --env production",
+    "heroku-postbuild": "npm run build:prod"
   },
-  "author": "",
+  "author": "Tim Damra",
   "license": "ISC"
 }
