@@ -61,9 +61,9 @@
     "test": "jest --watchAll",
     "start:dev": "webpack-dev-server --open",
     "start": "node index.js",
-    "build": "webpack",
-    "build:prod": "NODE_ENV=production && webpack -p --env production",
-    "heroku-postbuild": "npm run build:prod"
+    "build:dev": "webpack",
+    "build:prod": "webpack -p --env production",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false && npm run build:prod"
   },
   "author": "Tim Damra",
   "license": "ISC"
