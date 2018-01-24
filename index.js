@@ -8,7 +8,7 @@ const cc = require('cryptocompare');
 const CoinMarketCap = require('coinmarketcap-api');
 const ccxt = require('ccxt');
 
-const fetchTweets = require('./fetchTweets');
+const fetchTweets = require('./server/fetchTweets');
 
 const app = express();
 const client = new CoinMarketCap();
