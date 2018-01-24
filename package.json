@@ -28,14 +28,7 @@
     "styled-components": "^2.4.0",
     "styled-spinkit": "^0.2.0",
     "twitter": "^1.7.1",
-    "victory": "^0.24.5"
-  },
-  "jest": {
-    "setupFiles": ["raf/polyfill", "<rootDir>/src/tests/setupTests.js"],
-    "snapshotSerializers": ["enzyme-to-json/serializer"],
-    "collectCoverageFrom": ["**/*.{js}", "!**/node_modules/**"]
-  },
-  "devDependencies": {
+    "victory": "^0.24.5",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
@@ -58,7 +51,13 @@
     "prop-types": "^15.6.0",
     "style-loader": "^0.19.1",
     "webpack": "^3.10.0",
-    "webpack-dev-middleware": "^2.0.4",
+  },
+  "jest": {
+    "setupFiles": ["raf/polyfill", "<rootDir>/src/tests/setupTests.js"],
+    "snapshotSerializers": ["enzyme-to-json/serializer"],
+    "collectCoverageFrom": ["**/*.{js}", "!**/node_modules/**"]
+  },
+  "devDependencies": {
     "webpack-dev-server": "^2.10.1"
   },
   "scripts": {
