@@ -16,7 +16,9 @@ module.exports = (app, ccxt) => {
           exchanges: response.data.Data.Exchanges
         });
       })
-      .catch(err => err);
+      .catch(err => {
+        res.status(402).send('TD: image not found');
+      });
   });
 
   app.get('/profile/:symbol', (req, res) => {
@@ -28,8 +30,7 @@ module.exports = (app, ccxt) => {
       '5m',
       (error, ticks, symb) => {
         if (error) {
-          console.error(error);
-          return error;
+          res.status(402).send(`TD: Profile for ${symbol} not available`);
         }
 
         const hourData = ticks.map(val => {
@@ -41,7 +42,7 @@ module.exports = (app, ccxt) => {
             close: val[4]
           };
         });
-        res.send({ response: hourData });
+        res.status(200).send({ response: hourData });
       },
       { limit: 12 }
     );
@@ -55,7 +56,9 @@ module.exports = (app, ccxt) => {
           data: list.data
         });
       })
-      .catch(err => err);
+      .catch(err => {
+        res.status(402).send('Not available at the moment');
+      });
   });
 
   app.get('/reddit', async (req, res) => {
@@ -71,11 +74,11 @@ module.exports = (app, ccxt) => {
         ...btcReddit.data.data.children
       ];
 
-      res.send({
+      res.status(200).send({
         redditLists: mergeReddits
       });
     } catch (err) {
-      return err;
+      res.status(402).send('Could not retrieve Reddit data');
     }
   });
 
@@ -86,9 +89,11 @@ module.exports = (app, ccxt) => {
           'VitalikButerin,officialmcafee,satoshilite,aantonop,novogratz,WhalePanda'
       })
       .then(response => {
-        res.send(response);
+        res.status(200).send(response);
       })
-      .catch(err => err);
+      .catch(err => {
+        res.status(402).send('Could not retrieve Twitter data');
+      });
   });
 
   app.get('/list', async (req, res) => {
@@ -104,7 +109,7 @@ module.exports = (app, ccxt) => {
 
       res.status(200).send({ coins });
     } catch (err) {
-      return err;
+      res.status(402).send('Could not retrieve coin data');
     }
   });
 };
