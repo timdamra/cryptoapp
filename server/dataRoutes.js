@@ -4,7 +4,7 @@ const binance = require('node-binance-api');
 const twitterClient = require('./fetchTweets');
 
 module.exports = (app, ccxt) => {
-  app.get('/exchanges/:symbol', (req, res, next) => {
+  app.get('/exchanges/:symbol', (req, res) => {
     let { symbol } = req.params;
 
     const api = `https://www.cryptocompare.com/api/data/coinsnapshot/?fsym=${symbol}&tsym=USD`;
@@ -16,15 +16,12 @@ module.exports = (app, ccxt) => {
           exchanges: response.data.Data.Exchanges
         });
       })
-      .catch(err => {
-        console.error(err);
-        return next(err);
-      });
+      .catch(err => err);
   });
 
-  app.get('/profile/:symbol', (req, res, next) => {
+  app.get('/profile/:symbol', (req, res) => {
     const { symbol } = req.params;
-    const ticker = `${symbol.toUpperCase()}BTC`;
+    const ticker = symbol === 'BTC' ? `BTCUSD` : `${symbol.toUpperCase()}BTC`;
 
     binance.candlesticks(
       ticker,
@@ -32,7 +29,7 @@ module.exports = (app, ccxt) => {
       (error, ticks, symb) => {
         if (error) {
           console.error(error);
-          return next(err);
+          return error;
         }
 
         const hourData = ticks.map(val => {
@@ -50,7 +47,7 @@ module.exports = (app, ccxt) => {
     );
   });
 
-  app.get('/ico', (req, res, next) => {
+  app.get('/ico', (req, res) => {
     axios
       .get('https://api.icowatchlist.com/public/v1/')
       .then(list => {
@@ -58,13 +55,10 @@ module.exports = (app, ccxt) => {
           data: list.data
         });
       })
-      .catch(err => {
-        console.error(err);
-        return next(err);
-      });
+      .catch(err => err);
   });
 
-  app.get('/reddit', async (req, res, next) => {
+  app.get('/reddit', async (req, res) => {
     const ccRedditApi = 'https://www.reddit.com/r/cryptocurrency.json?limit=5';
     const btcRedditApi = 'https://www.reddit.com/r/Bitcoin.json?limit=5';
 
@@ -81,12 +75,11 @@ module.exports = (app, ccxt) => {
         redditLists: mergeReddits
       });
     } catch (err) {
-      console.error(err);
-      return next(err);
+      return err;
     }
   });
 
-  app.get('/twitter', (req, res, next) => {
+  app.get('/twitter', (req, res) => {
     twitterClient
       .get('/users/lookup', {
         screen_name:
@@ -95,10 +88,7 @@ module.exports = (app, ccxt) => {
       .then(response => {
         res.send(response);
       })
-      .catch(err => {
-        console.error(err);
-        return next(err);
-      });
+      .catch(err => err);
   });
 
   app.get('/list', async (req, res) => {
@@ -114,8 +104,7 @@ module.exports = (app, ccxt) => {
 
       res.status(200).send({ coins });
     } catch (err) {
-      console.error(err);
-      return next(err);
+      return err;
     }
   });
 };
