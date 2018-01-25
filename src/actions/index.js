@@ -14,9 +14,9 @@ export const fetchCurrencyList = () => async dispatch => {
 };
 
 export const fetchICOList = () => async dispatch => {
-  const res = await axios.get('https://api.icowatchlist.com/public/v1/');
+  const res = await axios.get('/ico');
 
-  dispatch({ type: ICO_LIST, payload: res.data.ico });
+  dispatch({ type: ICO_LIST, payload: res.data.data.ico });
 };
 
 export const fetchRedditList = () => async dispatch => {

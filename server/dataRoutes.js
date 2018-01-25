@@ -4,7 +4,7 @@ const binance = require('node-binance-api');
 const twitterClient = require('./fetchTweets');
 
 module.exports = (app, ccxt) => {
-  app.get('/exchanges/:symbol', (req, res) => {
+  app.get('/exchanges/:symbol', (req, res, next) => {
     let { symbol } = req.params;
 
     const api = `https://www.cryptocompare.com/api/data/coinsnapshot/?fsym=${symbol}&tsym=USD`;
@@ -17,12 +17,12 @@ module.exports = (app, ccxt) => {
         });
       })
       .catch(err => {
-        console.log(err);
-        res.end();
+        console.error(err);
+        return next(err);
       });
   });
 
-  app.get('/profile/:symbol', (req, res) => {
+  app.get('/profile/:symbol', (req, res, next) => {
     const { symbol } = req.params;
     const ticker = `${symbol.toUpperCase()}BTC`;
 
@@ -32,7 +32,7 @@ module.exports = (app, ccxt) => {
       (error, ticks, symb) => {
         if (error) {
           console.error(error);
-          return res.status(404).send('Error');
+          return next(err);
         }
 
         const hourData = ticks.map(val => {
@@ -50,7 +50,7 @@ module.exports = (app, ccxt) => {
     );
   });
 
-  app.get('/ico', (req, res) => {
+  app.get('/ico', (req, res, next) => {
     axios
       .get('https://api.icowatchlist.com/public/v1/')
       .then(list => {
@@ -59,12 +59,12 @@ module.exports = (app, ccxt) => {
         });
       })
       .catch(err => {
-        console.log(err);
-        res.end();
+        console.error(err);
+        return next(err);
       });
   });
 
-  app.get('/reddit', async (req, res) => {
+  app.get('/reddit', async (req, res, next) => {
     const ccRedditApi = 'https://www.reddit.com/r/cryptocurrency.json?limit=5';
     const btcRedditApi = 'https://www.reddit.com/r/Bitcoin.json?limit=5';
 
@@ -82,11 +82,11 @@ module.exports = (app, ccxt) => {
       });
     } catch (err) {
       console.error(err);
-      res.status(404).send('Something went wrong!');
+      return next(err);
     }
   });
 
-  app.get('/twitter', (req, res) => {
+  app.get('/twitter', (req, res, next) => {
     twitterClient
       .get('/users/lookup', {
         screen_name:
@@ -97,7 +97,7 @@ module.exports = (app, ccxt) => {
       })
       .catch(err => {
         console.error(err);
-        res.end();
+        return next(err);
       });
   });
 
@@ -114,8 +114,8 @@ module.exports = (app, ccxt) => {
 
       res.status(200).send({ coins });
     } catch (err) {
-      console.log(err);
-      res.status(400).send('Something went wrong!');
+      console.error(err);
+      return next(err);
     }
   });
 };

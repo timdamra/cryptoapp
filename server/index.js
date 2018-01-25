@@ -25,8 +25,7 @@ app.get('*', (req, res) => {
 });
 
 app.use(function(err, req, res, next) {
-  res.status(err.status || 500);
-  res.send(`Something is wrong!`);
+  res.sendFile(path.join(publicPath, 'index.html'));
 });
 
 app.listen(PORT, () => {
