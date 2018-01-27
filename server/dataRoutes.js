@@ -33,6 +33,10 @@ module.exports = (app, ccxt) => {
           res.status(402).send(`TD: Profile for ${symbol} not available`);
         }
 
+        if (!Array.isArray(ticks)) {
+          res.send(ticks);
+        }
+
         const hourData = ticks.map(val => {
           return {
             x: val[0],

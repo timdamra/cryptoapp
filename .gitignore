@@ -1,6 +1,10 @@
 node_modules/
 testdata/
 src/tests
+dist/bundle.js
+dist/bundle.js.map
+dist/styles.css
+dist/styles.css.map
 list.js
 list2.js
 scrape.js

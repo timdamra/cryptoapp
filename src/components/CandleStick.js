@@ -10,11 +10,14 @@ import {
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { fetchChartData } from '../actions';
+import { fetchChartData, emptyChartData } from '../actions';
 
 class CandleStick extends Component {
   componentDidMount = () => {
     this.props.fetchChartData(this.props.symbol);
+  };
+  componentWillUnmount = () => {
+    this.props.emptyChartData();
   };
   render = () => {
     return this.props.chartData
@@ -54,4 +57,6 @@ const mapStateToProps = ({ chartData }) => {
   return { chartData };
 };
 
-export default connect(mapStateToProps, { fetchChartData })(CandleStick);
+export default connect(mapStateToProps, { fetchChartData, emptyChartData })(
+  CandleStick
+);

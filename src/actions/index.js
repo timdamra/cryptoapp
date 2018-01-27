@@ -6,6 +6,7 @@ export const REDDIT_LIST = 'reddit_list';
 export const TWITTER_LIST = 'twitter_list';
 export const ACTIVE_PROFILE = 'active_profile';
 export const CHART_DATA = 'chart_data';
+export const EMPTY_CHART = 'empty_chart';
 
 export const fetchCurrencyList = () => async dispatch => {
   const res = await axios.get('/list');
@@ -39,4 +40,8 @@ export const fetchChartData = symbol => async dispatch => {
   const res = await axios.get(`/profile/${symbol}`);
 
   dispatch({ type: CHART_DATA, payload: res.data.response });
+};
+
+export const emptyChartData = () => dispatch => {
+  dispatch({ type: EMPTY_CHART, payload: [] });
 };
