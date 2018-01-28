@@ -9,11 +9,12 @@ import {
   Change24,
   Change1,
   Stats,
+  ProfileLink,
   MktCap
 } from '../styles/Coins';
 
 import { imageList } from '../imageList';
-import { setActiveProfileImage } from '../actions';
+import { setActiveProfileImage, setActiveProfileSymbol } from '../actions';
 
 const numberWithCommas = x => {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
@@ -24,7 +25,8 @@ class SingleCoinItem extends Component {
     super(props);
 
     this.state = {
-      url: '/assets/crypto.png'
+      url: '/assets/crypto.png',
+      symbol: this.props.coindata.symbol
     };
   }
   componentDidMount = () => {
@@ -45,6 +47,7 @@ class SingleCoinItem extends Component {
   };
   displayActiveProfile = () => {
     this.props.setActiveProfileImage(this.state);
+    this.props.setActiveProfileSymbol(this.state.symbol);
   };
   render = () => {
     let { coindata } = this.props;
@@ -54,16 +57,21 @@ class SingleCoinItem extends Component {
         <SingleCoinImg>
           <Link
             onClick={this.displayActiveProfile}
-            to={`/profile/${coindata.id}`}
+            to={`/profile/${coindata.symbol}`}
           >
             <CoinImg src={this.state.url} />
           </Link>
-          <p>
-            {coindata.name}{' '}
-            <span style={{ backgroundColor: 'black', color: 'white' }}>
-              {coindata.symbol}
-            </span>
-          </p>
+          <Link
+            onClick={this.displayActiveProfile}
+            to={`/profile/${coindata.symbol}`}
+          >
+            <ProfileLink>
+              {coindata.name}{' '}
+              <span style={{ backgroundColor: 'black', color: 'white' }}>
+                {coindata.symbol}
+              </span>
+            </ProfileLink>
+          </Link>
           <Stats>Market Cap:</Stats>
           <MktCap>
             ${numberWithCommas(coindata.market_cap_usd)}
@@ -80,4 +88,6 @@ class SingleCoinItem extends Component {
   };
 }
 
-export default connect(null, { setActiveProfileImage })(SingleCoinItem);
+export default connect(null, { setActiveProfileImage, setActiveProfileSymbol })(
+  SingleCoinItem
+);

@@ -30,11 +30,11 @@ module.exports = (app, ccxt) => {
       '5m',
       (error, ticks, symb) => {
         if (error) {
-          res.status(402).send(`TD: Profile for ${symbol} not available`);
+          res.send('TD: an error');
         }
 
         if (!Array.isArray(ticks)) {
-          res.send(ticks);
+          res.sendFile(path.join(__dirname, '..', 'dist', 'index.html'));
         }
 
         const hourData = ticks.map(val => {

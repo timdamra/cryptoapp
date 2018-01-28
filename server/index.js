@@ -16,10 +16,10 @@ const PORT = process.env.PORT || 3000;
 
 app.use(morgan('tiny'));
 require('./dataRoutes')(app, ccxt);
-app.use(express.static('/dist/assets'));
+app.use(express.static(path.join(__dirname, '..', 'dist')));
 
 app.get('*', (req, res) => {
-  res.sendFile(path.resolve('dist', 'index.html'));
+  res.sendFile(path.join(__dirname, '..', 'dist', 'index.html'));
 });
 
 app.listen(PORT, () => {

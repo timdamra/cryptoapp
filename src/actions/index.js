@@ -4,7 +4,8 @@ export const CURRENCY_LIST = 'currency_list';
 export const ICO_LIST = 'ico_list';
 export const REDDIT_LIST = 'reddit_list';
 export const TWITTER_LIST = 'twitter_list';
-export const ACTIVE_PROFILE = 'active_profile';
+export const ACTIVE_PROFILE_IMAGE = 'active_profile_image';
+export const ACTIVE_PROFILE_SYMBOL = 'active_profile_symbol';
 export const CHART_DATA = 'chart_data';
 export const EMPTY_CHART = 'empty_chart';
 
@@ -32,8 +33,12 @@ export const fetchTwitterList = () => async dispatch => {
   dispatch({ type: TWITTER_LIST, payload: res.data });
 };
 
+export const setActiveProfileSymbol = symbol => dispatch => {
+  dispatch({ type: ACTIVE_PROFILE_SYMBOL, payload: symbol });
+};
+
 export const setActiveProfileImage = ({ url }) => dispatch => {
-  dispatch({ type: ACTIVE_PROFILE, payload: url });
+  dispatch({ type: ACTIVE_PROFILE_IMAGE, payload: url });
 };
 
 export const fetchChartData = symbol => async dispatch => {

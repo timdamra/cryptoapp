@@ -18,8 +18,9 @@ import ExchangesContainer from './ExchangesContainer';
 class Profile extends Component {
   render = () => {
     const displayedCurrency = this.props.currencyList.coins.find(
-      val => val.id === this.props.match.params.id
+      val => val.symbol === this.props.activeProfileSymbol
     );
+
     return (
       <CurrencyDiv>
         <CurrencyTitle>
@@ -48,7 +49,7 @@ class Profile extends Component {
               </p>
             </div>
             <ChartDiv>
-              <CandleStick symbol={displayedCurrency.symbol} />
+              <CandleStick />
             </ChartDiv>
           </CurrencyNumbersDiv>
           <ExchangesContainer displayedCurrency={displayedCurrency} />
@@ -64,9 +65,14 @@ Profile.propTypes = {
   })
 };
 
-const mapStateToProps = ({ activeProfileImage, currencyList }) => {
+const mapStateToProps = ({
+  activeProfileImage,
+  activeProfileSymbol,
+  currencyList
+}) => {
   return {
     activeProfileImage,
+    activeProfileSymbol,
     currencyList
   };
 };

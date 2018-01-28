@@ -14,7 +14,7 @@ import { fetchChartData, emptyChartData } from '../actions';
 
 class CandleStick extends Component {
   componentDidMount = () => {
-    this.props.fetchChartData(this.props.symbol);
+    this.props.fetchChartData(this.props.activeProfileSymbol);
   };
   componentWillUnmount = () => {
     this.props.emptyChartData();
@@ -53,8 +53,8 @@ CandleStick.propTypes = {
   chartData: PropTypes.array.isRequired
 };
 
-const mapStateToProps = ({ chartData }) => {
-  return { chartData };
+const mapStateToProps = ({ chartData, activeProfileSymbol }) => {
+  return { chartData, activeProfileSymbol };
 };
 
 export default connect(mapStateToProps, { fetchChartData, emptyChartData })(

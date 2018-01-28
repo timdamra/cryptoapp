@@ -43,6 +43,8 @@ export const SortOption = styled.li`
 
 export const SingleCoinImg = styled.div`width: 30%;`;
 
+export const ProfileLink = styled.p`text-decoration: none;`;
+
 export const CoinImg = styled.img`
   max-width: 40px;
   max-height: 40px;
