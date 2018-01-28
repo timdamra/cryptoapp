@@ -5,7 +5,6 @@ import CoinList from './CoinList';
 import NavMenu from './Nav';
 import Profile from './Profile';
 import Calendar from './Calendar';
-import Research from './Research';
 import NewsContainer from './NewsContainer';
 import Footer from './Footer';
 import { Content, Container, Title } from '../styles/General';
@@ -44,7 +43,6 @@ export default class App extends Component {
               <Route exact path="/" component={CoinList} />
               <Route path="/profile/:symbol" component={Profile} />
               <Route path="/calendar" component={Calendar} />
-              <Route path="/research/:symbol" component={Research} />
               <Route path="/buzz" component={NewsContainer} />
               <Route component={NotFound} />
             </Switch>
