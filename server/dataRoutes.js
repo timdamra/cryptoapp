@@ -4,6 +4,19 @@ const binance = require('node-binance-api');
 const twitterClient = require('./fetchTweets');
 
 module.exports = (app, ccxt) => {
+  app.get('/research/:symbol', (req, res) => {
+    const symbol = req.params.symbol.toUpperCase();
+    axios
+      .get(`https://min-api.cryptocompare.com/data/histohour?fsym=${symbol}`)
+      .then(response => {
+        res.send({ data: response.data });
+      })
+      .catch(err => {
+        res.send({
+          Error: err
+        });
+      });
+  });
   app.get('/exchanges/:symbol', (req, res) => {
     let { symbol } = req.params;
 
