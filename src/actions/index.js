@@ -42,7 +42,7 @@ export const setActiveProfileImage = ({ url }) => dispatch => {
 };
 
 export const fetchChartData = symbol => async dispatch => {
-  const res = await axios.get(`/profile/${symbol}`);
+  const res = await axios.get(`/api/profile/${symbol}`);
 
   dispatch({ type: CHART_DATA, payload: res.data.response });
 };

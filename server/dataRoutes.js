@@ -4,7 +4,7 @@ const binance = require('node-binance-api');
 const twitterClient = require('./fetchTweets');
 
 module.exports = (app, ccxt) => {
-  app.get('/research/:symbol', (req, res) => {
+  app.get('/api/research/:symbol', (req, res) => {
     const { symbol } = req.params;
     const ticker = symbol === 'BTC' ? `USD` : `${symbol.toUpperCase()}`;
 
@@ -38,7 +38,7 @@ module.exports = (app, ccxt) => {
       });
   });
 
-  app.get('/profile/:symbol', (req, res) => {
+  app.get('/api/profile/:symbol', (req, res) => {
     const { symbol } = req.params;
     const ticker = symbol === 'BTC' ? `BTCUSD` : `${symbol.toUpperCase()}BTC`;
 
