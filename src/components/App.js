@@ -42,7 +42,7 @@ export default class App extends Component {
               </Title>
               <Switch>
                 <Route exact path="/" component={CoinList} />
-                <Route path="/profile/:id" component={Profile} />
+                <Route path="/profile/:symbol" component={Profile} />
                 <Route path="/calendar" component={Calendar} />
                 <Route path="/buzz" component={NewsContainer} />
                 <Route component={NotFound} />
