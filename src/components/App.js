@@ -28,30 +28,28 @@ export default class App extends Component {
   };
   render = () => {
     return (
-      <BrowserRouter>
-        <div>
-          <Content>
-            <NavMenu
-              handleClickMenuItem={this.handleClickMenuItem}
-              handleClick={this.handleClick}
-              isOpen={this.state.isOpen}
-            />
-            <Container>
-              <Title>
-                <h2>BLOCKCHAIN INDEX</h2>
-              </Title>
-              <Switch>
-                <Route exact path="/" component={CoinList} />
-                <Route path="/profile/:symbol" component={Profile} />
-                <Route path="/calendar" component={Calendar} />
-                <Route path="/buzz" component={NewsContainer} />
-                <Route component={NotFound} />
-              </Switch>
-            </Container>
-          </Content>
-          <Footer />
-        </div>
-      </BrowserRouter>
+      <div>
+        <Content>
+          <NavMenu
+            handleClickMenuItem={this.handleClickMenuItem}
+            handleClick={this.handleClick}
+            isOpen={this.state.isOpen}
+          />
+          <Container>
+            <Title>
+              <h2>BLOCKCHAIN INDEX</h2>
+            </Title>
+            <Switch>
+              <Route exact path="/" component={CoinList} />
+              <Route path="/profile/:symbol" component={Profile} />
+              <Route path="/calendar" component={Calendar} />
+              <Route path="/buzz" component={NewsContainer} />
+              <Route component={NotFound} />
+            </Switch>
+          </Container>
+        </Content>
+        <Footer />
+      </div>
     );
   };
 }
