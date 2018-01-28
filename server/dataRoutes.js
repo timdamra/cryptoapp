@@ -1,3 +1,4 @@
+const util = require('util');
 const axios = require('axios');
 const binance = require('node-binance-api');
 
@@ -42,14 +43,10 @@ module.exports = (app, ccxt) => {
     const { symbol } = req.params;
     const ticker = symbol === 'BTC' ? `BTCUSD` : `${symbol.toUpperCase()}BTC`;
 
-    binance.candlesticks(
-      ticker,
-      '5m',
-      (error, ticks, symb) => {
-        if (error || !Array.isArray(ticks)) {
-          res.redirect('/');
-        }
+    let getBinance = util.promisify(binance.candlesticks(ticker, '5m'));
 
+    getBinance({ limit: 12 })
+      .then(ticks => {
         const hourData = ticks.map(val => {
           return {
             x: val[0],
@@ -60,9 +57,10 @@ module.exports = (app, ccxt) => {
           };
         });
         res.status(200).send({ response: hourData });
-      },
-      { limit: 12 }
-    );
+      })
+      .catch(err => {
+        res.redirect('/');
+      });
   });
 
   app.get('/ico', (req, res) => {
