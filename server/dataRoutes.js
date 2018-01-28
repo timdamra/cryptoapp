@@ -5,9 +5,13 @@ const twitterClient = require('./fetchTweets');
 
 module.exports = (app, ccxt) => {
   app.get('/research/:symbol', (req, res) => {
-    const symbol = req.params.symbol.toUpperCase();
+    const { symbol } = req.params;
+    const ticker = symbol === 'BTC' ? `USD` : `${symbol.toUpperCase()}`;
+
     axios
-      .get(`https://min-api.cryptocompare.com/data/histohour?fsym=${symbol}`)
+      .get(
+        `https://min-api.cryptocompare.com/data/histohour?fsym=${ticker}&tsym=BTC`
+      )
       .then(response => {
         res.send({ data: response.data });
       })
