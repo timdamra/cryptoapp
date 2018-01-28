@@ -38,7 +38,7 @@ module.exports = (app, ccxt) => {
       });
   });
 
-  app.get('/api/profile/:symbol', (req, res) => {
+  app.get('/profile/:symbol', (req, res) => {
     const { symbol } = req.params;
     const ticker = symbol === 'BTC' ? `BTCUSD` : `${symbol.toUpperCase()}BTC`;
 
