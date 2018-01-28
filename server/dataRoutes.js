@@ -50,10 +50,6 @@ module.exports = (app, ccxt) => {
           res.send('TD: an error');
         }
 
-        if (!Array.isArray(ticks)) {
-          res.sendFile(path.join(__dirname, '..', 'dist', 'index.html'));
-        }
-
         const hourData = ticks.map(val => {
           return {
             x: val[0],
