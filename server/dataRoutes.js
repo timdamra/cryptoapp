@@ -38,7 +38,7 @@ module.exports = (app, ccxt) => {
       });
   });
 
-  app.get('/profile/:symbol', (req, res) => {
+  app.get('/api/profile/:symbol', (req, res) => {
     const { symbol } = req.params;
     const ticker = symbol === 'BTC' ? `BTCUSD` : `${symbol.toUpperCase()}BTC`;
 
@@ -46,8 +46,8 @@ module.exports = (app, ccxt) => {
       ticker,
       '5m',
       (error, ticks, symb) => {
-        if (error) {
-          res.send('TD: an error');
+        if (error || !Array.isArray(ticks)) {
+          res.redirect('/');
         }
 
         const hourData = ticks.map(val => {
