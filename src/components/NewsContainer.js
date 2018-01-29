@@ -25,7 +25,6 @@ class NewsContainer extends Component {
     });
   };
   handleRedditClick = evt => {
-    console.log(evt);
     this.setState(prevState => {
       let isRedditOpen = !prevState.isRedditOpen;
       return { isRedditOpen };

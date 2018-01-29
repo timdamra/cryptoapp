@@ -1,23 +1,10 @@
+const path = require('path');
 const axios = require('axios');
 const twitterClient = require('./fetchTweets');
 
 module.exports = (app, ccxt) => {
-  app.get('/api/research/:symbol', (req, res) => {
-    const { symbol } = req.params;
-    const ticker = symbol === 'BTC' ? `USD` : `${symbol.toUpperCase()}`;
-
-    axios
-      .get(
-        `https://min-api.cryptocompare.com/data/histohour?fsym=${ticker}&tsym=BTC`
-      )
-      .then(response => {
-        res.send({ data: response.data });
-      })
-      .catch(err => {
-        res.send({
-          Error: err
-        });
-      });
+  app.get('/profile/:symbol', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'dist', 'index.html'));
   });
   app.get('/exchanges/:symbol', (req, res) => {
     let { symbol } = req.params;
