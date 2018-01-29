@@ -4,7 +4,7 @@ const twitterClient = require('./fetchTweets');
 
 module.exports = (app, ccxt) => {
   app.get('/profile/:symbol', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'dist', 'index.html'));
+    res.redirect('/');
   });
   app.get('/exchanges/:symbol', (req, res) => {
     let { symbol } = req.params;
