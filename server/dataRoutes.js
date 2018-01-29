@@ -1,7 +1,4 @@
-const util = require('util');
 const axios = require('axios');
-const binance = require('node-binance-api');
-
 const twitterClient = require('./fetchTweets');
 
 module.exports = (app, ccxt) => {
@@ -41,24 +38,28 @@ module.exports = (app, ccxt) => {
 
   app.get('/api/profile/:symbol', (req, res) => {
     const { symbol } = req.params;
-    const ticker = symbol === 'BTC' ? `BTCUSD` : `${symbol.toUpperCase()}BTC`;
+    const ticker = symbol === 'BTC' ? `BTCUSDT` : `${symbol.toUpperCase()}BTC`;
+    const binanceApi = `https://api.binance.com/api/v1/klines?symbol=${ticker}&interval=5m&limit=12`;
 
-    let getBinance = util.promisify(binance.candlesticks(ticker, '5m'));
+    axios
+      .get(binanceApi)
+      .then(response => {
+        let data = [];
 
-    getBinance({ limit: 12 })
-      .then(ticks => {
-        const hourData = ticks.map(val => {
-          return {
+        response.data.forEach((val, i) => {
+          data.push({
             x: val[0],
             open: val[1],
             high: val[2],
             low: val[3],
             close: val[4]
-          };
+          });
         });
-        res.status(200).send({ response: hourData });
+
+        res.status(200).send({ data });
       })
       .catch(err => {
+        console.error(err);
         res.redirect('/');
       });
   });
