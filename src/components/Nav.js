@@ -26,7 +26,7 @@ const NavMenu = props => {
                 }}
                 to="/"
               >
-                <h4>Home</h4>
+                <h4>Main Page</h4>
               </Link>
             </NavItem>
             <NavItem>

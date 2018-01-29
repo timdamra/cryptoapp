@@ -38,10 +38,10 @@ export const CurrencyNumbersDiv = styled.div`
 `;
 
 export const ChartDiv = styled.div`
-  width: 75%;
+  width: 80%;
 
   @media screen and (min-width: 1024px) {
-    width: 67%;
+    width: 65%;
   }
 `;
 

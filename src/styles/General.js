@@ -67,7 +67,7 @@ export const NavItem = styled.div`
 export const DesktopNavTabsContainer = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-end;
 `;
 
 export const NavDropDown = styled.div`

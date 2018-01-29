@@ -89,7 +89,7 @@ module.exports = (app, ccxt) => {
     twitterClient
       .get('/users/lookup', {
         screen_name:
-          'VitalikButerin,officialmcafee,satoshilite,aantonop,novogratz,WhalePanda'
+          'VitalikButerin,officialmcafee,satoshilite,aantonop,novogratz,WhalePanda,icoalert,Altcoinbuzzio,anondran'
       })
       .then(response => {
         res.status(200).send(response);
