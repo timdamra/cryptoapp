@@ -15,7 +15,7 @@ import {
 } from '../styles/Profile';
 import ExchangesContainer from './ExchangesContainer';
 
-class Profile extends Component {
+export class Profile extends Component {
   render = () => {
     const displayedCurrency = this.props.currencyList.coins.find(
       val => val.symbol === this.props.activeProfileSymbol

@@ -20,7 +20,7 @@ const numberWithCommas = x => {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 };
 
-class SingleCoinItem extends Component {
+export class SingleCoinItem extends Component {
   constructor(props) {
     super(props);
 

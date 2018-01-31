@@ -6,7 +6,7 @@ import { CoinContainer, SortButtons, SortOption } from '../styles/Coins';
 import SingleCoinItem from './SingleCoinItem';
 import { fetchCurrencyList } from '../actions';
 
-class CoinList extends Component {
+export class CoinList extends Component {
   state = {
     sortBy: 'market_cap_usd'
   };

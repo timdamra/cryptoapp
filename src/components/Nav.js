@@ -11,7 +11,7 @@ import {
   NavImg
 } from '../styles/General';
 
-const NavMenu = props => {
+export const NavMenu = props => {
   return (
     <Nav>
       <NavImg onClick={props.handleClick} src="/assets/menu.png" />

@@ -55,17 +55,9 @@
     "webpack": "^3.10.0"
   },
   "jest": {
-    "setupFiles": [
-      "raf/polyfill",
-      "<rootDir>/src/tests/setupTests.js"
-    ],
-    "snapshotSerializers": [
-      "enzyme-to-json/serializer"
-    ],
-    "collectCoverageFrom": [
-      "**/*.{js}",
-      "!**/node_modules/**"
-    ]
+    "setupFiles": ["raf/polyfill", "<rootDir>/src/tests/setupTests.js"],
+    "snapshotSerializers": ["enzyme-to-json/serializer"],
+    "collectCoverageFrom": ["**/*.{js}", "!**/node_modules/**"]
   },
   "scripts": {
     "test": "jest --watchAll",
