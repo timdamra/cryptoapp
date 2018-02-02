@@ -8,6 +8,7 @@ export const Nav = styled.div`
   position: fixed;
   top: 0;
   background-color: #85cbfc;
+  z-index: 10;
 
   @media screen and (min-width: 769px) {
     padding: 2vh 0;
@@ -67,7 +68,8 @@ export const NavItem = styled.div`
 export const DesktopNavTabsContainer = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: center;
+  align-items: flex-end;
 `;
 
 export const NavDropDown = styled.div`

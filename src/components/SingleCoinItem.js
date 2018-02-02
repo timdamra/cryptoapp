@@ -16,7 +16,7 @@ import {
 import { imageList } from '../imageList';
 import { setActiveProfileImage, setActiveProfileSymbol } from '../actions';
 
-const numberWithCommas = x => {
+export const numberWithCommas = x => {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 };
 

@@ -32,21 +32,21 @@ export class Profile extends Component {
         <CurrencyNumbers>
           <CurrencyNumbersDiv>
             <div>
-              <p>
-                USD Price: {displayedCurrency.price_usd}
-              </p>
-              <p>
-                Market Cap: {displayedCurrency.market_cap_usd}
-              </p>
-              <p>
-                1hr Change%: {displayedCurrency.percent_change_1h}
-              </p>
-              <p>
-                24hr Change%: {displayedCurrency.percent_change_24h}
-              </p>
-              <p>
+              <h4>
+                USD Price: ${displayedCurrency.price_usd}
+              </h4>
+              <h4>
+                Market Cap: ${displayedCurrency.market_cap_usd}
+              </h4>
+              <h4>
+                1hr Change: {displayedCurrency.percent_change_1h}%
+              </h4>
+              <h4>
+                24hr Change: {displayedCurrency.percent_change_24h}%
+              </h4>
+              <h4>
                 Total Supply: {displayedCurrency.total_supply}
-              </p>
+              </h4>
             </div>
             <ChartDiv>
               <CandleStick />

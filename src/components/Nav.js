@@ -85,7 +85,7 @@ export const NavMenu = props => {
                   borderRadius: '3px'
                 }}
               >
-                HOME
+                MAIN PAGE
               </h4>
             </Link>
           </NavItem>
