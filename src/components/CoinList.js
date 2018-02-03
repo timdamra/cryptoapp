@@ -48,6 +48,11 @@ export class CoinList extends Component {
                   }
                 })
             : <FoldingCube />}
+          <sub style={{ padding: '10px 0' }}>
+            **Disclaimer: This Web App only serves to display prices & other
+            data from the global CryptoCurrency market and NOT as investment
+            advice in any way
+          </sub>
         </CoinContainer>
       </div>
     );
