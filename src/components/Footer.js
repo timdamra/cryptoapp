@@ -12,11 +12,11 @@ const Footer = props => {
     <FooterDiv>
       <FooterSection>
         <FooterSubSection>
-          <h4 style={{ padding: '5px 0' }}>
+          <FooterFont style={{ padding: '5px 0' }}>
             **Disclaimer: This Web App only serves to display prices & other
             data from the global CryptoCurrency market and NOT as investment
             advice in any way
-          </h4>
+          </FooterFont>
         </FooterSubSection>
         <FooterSubSection>
           <i style={{ padding: '0 6px' }} className="fab fa-facebook-f fa-3x" />

@@ -93,7 +93,7 @@ export const NavImg = styled.img`
 
 export const FooterDiv = styled.footer`
   display: flex;
-  flex-flow: row;
+  flex-flow: row wrap;
   justify-content: space-around;
   width: 100%;
   margin-top: 8vh;
@@ -114,9 +114,9 @@ export const FooterSection = styled.div`
 `;
 
 export const FooterFont = styled.p`
-  font-size: 1rem;
+  font-size: 0.8rem;
 
   @media screen and (min-width: 769px) {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
 `;
