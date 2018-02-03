@@ -105,3 +105,9 @@ export const FooterSection = styled.div`
   flex-direction: row wrap;
   justify-content: center;
 `;
+
+export const FooterDonateSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
