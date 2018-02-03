@@ -104,6 +104,7 @@ export const FooterSection = styled.div`
   display: flex;
   flex-direction: row wrap;
   justify-content: center;
+  align-items: center;
 `;
 
 export const FooterDonateSection = styled.div`
