@@ -12,9 +12,9 @@ const Footer = props => {
     <FooterDiv>
       <FooterSection>
         <FooterSubSection>
-          <i style={{ padding: '0 6px' }} className="fab fa-facebook-f fa-3x" />
-          <i style={{ padding: '0 6px' }} className="fab fa-twitter fa-3x" />
-          <i style={{ padding: '0 6px' }} className="fab fa-youtube fa-3x" />
+          <i style={{ padding: '6px' }} className="fab fa-facebook-f fa-3x" />
+          <i style={{ padding: '6px' }} className="fab fa-twitter fa-3x" />
+          <i style={{ padding: '6px' }} className="fab fa-youtube fa-3x" />
         </FooterSubSection>
       </FooterSection>
       <FooterSection>
