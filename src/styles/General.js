@@ -93,22 +93,30 @@ export const NavImg = styled.img`
 
 export const FooterDiv = styled.footer`
   display: flex;
-  flex-direction: row;
+  flex-direction: row wrap;
   justify-content: space-around;
   width: 100%;
   margin-top: 8vh;
   background-color: #85cbfc;
 `;
 
-export const FooterSection = styled.div`
+export const FooterSubSection = styled.div`
   display: flex;
   flex-direction: row wrap;
   justify-content: center;
   align-items: center;
 `;
 
-export const FooterDonateSection = styled.div`
+export const FooterSection = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+`;
+
+export const FooterFont = styled.p`
+  font-size: 1rem;
+
+  @media screen and (min-width: 769px) {
+    font-size: 1.2rem;
+  }
 `;
