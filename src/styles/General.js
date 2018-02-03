@@ -93,7 +93,7 @@ export const NavImg = styled.img`
 
 export const FooterDiv = styled.footer`
   display: flex;
-  flex-direction: row wrap;
+  flex-flow: row;
   justify-content: space-around;
   width: 100%;
   margin-top: 8vh;
@@ -102,7 +102,7 @@ export const FooterDiv = styled.footer`
 
 export const FooterSubSection = styled.div`
   display: flex;
-  flex-direction: row wrap;
+  flex-flow: row wrap;
   justify-content: center;
   align-items: center;
 `;
